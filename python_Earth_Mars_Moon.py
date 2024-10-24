@@ -40,8 +40,22 @@ sphere_x_Earth,sphere_y_Earth=create_circle(radius)
 # print(sphere_y_Earth)
 # exit()
 
+############################## ANIMATION ##############################
+frame_amount=len(t)
+width_ratio=1.2
+y_f=-10 # [m]
+dy=10 # [m]
+
+def update_plot(num):
 
 
+
+    return
+
+
+
+
+plt.xlim(-radius*width_ratio,radius*width_ratio)
 
 
 
