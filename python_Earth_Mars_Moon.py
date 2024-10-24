@@ -47,16 +47,29 @@ y_f=-10 # [m]
 dy=10 # [m]
 
 def update_plot(num):
+    sphere_Earth.set_data(sphere_x_Earth,sphere_y_Earth)
 
+    return sphere_Earth,
 
+# Figure properties
+fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
+gs=gridspec.GridSpec(3,4)
 
-    return
-
-
-
-
+# Create object for Earth
+ax0=fig.add_subplot(gs[:,0],facecolor=(0.9,0.9,0.9))
+sphere_Earth,=ax0.plot([],[],'k',linewidth=3)
+land_Earth=ax0.plot([-radius*width_ratio,radius*width_ratio],[-5,-5],linewidth=42)
 plt.xlim(-radius*width_ratio,radius*width_ratio)
+plt.ylim(y_f,y_i+dy)
+plt.xticks(np.arange(-radius,radius+1,radius))
+plt.yticks(np.arange(y_f,y_i+2*dy,dy))
+plt.ylabel('altitude [m]')
+plt.title('Earth')
 
+
+plane_ani=animation.FuncAnimation(fig,update_plot,
+    frames=frame_amount,interval=20,repeat=True,blit=True)
+plt.show()
 
 
 
