@@ -15,7 +15,7 @@ g_Earth=-9.8 # [m/s^2]
 # Position y arrays
 n=2
 y_i=100 # [m]
-y_Earth=y_i+0,5*g_Earth*t**n
+y_Earth=y_i+0.5*g_Earth*t**n
 #np.set_printoptions(suppress=True)
 
 # Velocity y arrays
@@ -47,7 +47,7 @@ y_f=-10 # [m]
 dy=10 # [m]
 
 def update_plot(num):
-    sphere_Earth.set_data(sphere_x_Earth,sphere_y_Earth)
+    sphere_Earth.set_data(sphere_x_Earth,sphere_y_Earth+y_Earth[num])
 
     return sphere_Earth,
 
