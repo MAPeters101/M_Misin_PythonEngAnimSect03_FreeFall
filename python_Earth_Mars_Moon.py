@@ -40,10 +40,12 @@ def create_circle(r):
     sphere_y=r*np.sin(radians)
     return sphere_x,sphere_y
 
-radius=5
-sphere_x_Earth,sphere_y_Earth=create_circle(radius)
-sphere_x_Mars,sphere_y_Mars=create_circle(radius)
-sphere_x_Moon,sphere_y_Moon=create_circle(radius)
+radius_Earth=5
+radius_Mars=10
+radius_Moon=20
+sphere_x_Earth,sphere_y_Earth=create_circle(radius_Earth)
+sphere_x_Mars,sphere_y_Mars=create_circle(radius_Mars)
+sphere_x_Moon,sphere_y_Moon=create_circle(radius_Moon)
 
 # np.set_printoptions(suppress=True)
 # print(sphere_x_Earth)
@@ -57,19 +59,19 @@ y_f=-10 # [m]
 dy=10 # [m]
 
 def update_plot(num):
-    if y_Earth[num]>radius:
+    if y_Earth[num]>radius_Earth:
         sphere_Earth.set_data(sphere_x_Earth,sphere_y_Earth+y_Earth[num])
         alt_E.set_data(t[0:num],y_Earth[0:num])
         vel_E.set_data(t[0:num],y_Earth_velocity[0:num])
         acc_E.set_data(t[0:num],y_Earth_acceleration[0:num])
 
-    if y_Mars[num]>radius:
+    if y_Mars[num]>radius_Mars:
         sphere_Mars.set_data(sphere_x_Mars,sphere_y_Mars+y_Mars[num])
         alt_Ma.set_data(t[0:num],y_Mars[0:num])
         vel_Ma.set_data(t[0:num],y_Mars_velocity[0:num])
         acc_Ma.set_data(t[0:num],y_Mars_acceleration[0:num])
 
-    if y_Moon[num]>radius:
+    if y_Moon[num]>radius_Moon:
         sphere_Moon.set_data(sphere_x_Moon,sphere_y_Moon+y_Moon[num])
         alt_Mo.set_data(t[0:num],y_Moon[0:num])
         vel_Mo.set_data(t[0:num],y_Moon_velocity[0:num])
@@ -85,10 +87,10 @@ gs=gridspec.GridSpec(3,4)
 # Create object for Earth
 ax0=fig.add_subplot(gs[:,0],facecolor=(0.9,0.9,0.9))
 sphere_Earth,=ax0.plot([],[],'k',linewidth=3)
-land_Earth=ax0.plot([-radius*width_ratio,radius*width_ratio],[-5,-5],linewidth=42)
-plt.xlim(-radius*width_ratio,radius*width_ratio)
+land_Earth=ax0.plot([-radius_Earth*width_ratio,radius_Earth*width_ratio],[-5,-5],linewidth=42)
+plt.xlim(-radius_Earth*width_ratio,radius_Earth*width_ratio)
 plt.ylim(y_f,y_i+dy)
-plt.xticks(np.arange(-radius,radius+1,radius))
+plt.xticks(np.arange(-radius_Earth,radius_Earth+1,radius_Earth))
 plt.yticks(np.arange(y_f,y_i+2*dy,dy))
 plt.ylabel('altitude [m]')
 plt.title('Earth')
@@ -96,20 +98,20 @@ plt.title('Earth')
 # Create object for Mars
 ax1=fig.add_subplot(gs[:,1],facecolor=(0.9,0.9,0.9))
 sphere_Mars,=ax1.plot([],[],'k',linewidth=3)
-land_Mars=ax1.plot([-radius*width_ratio,radius*width_ratio],[-5,-5],'orangered',linewidth=42)
-plt.xlim(-radius*width_ratio,radius*width_ratio)
+land_Mars=ax1.plot([-radius_Mars*width_ratio,radius_Mars*width_ratio],[-5,-5],'orangered',linewidth=42)
+plt.xlim(-radius_Mars*width_ratio,radius_Mars*width_ratio)
 plt.ylim(y_f,y_i+dy)
-plt.xticks(np.arange(-radius,radius+1,radius))
+plt.xticks(np.arange(-radius_Mars,radius_Mars+1,radius_Mars))
 plt.yticks(np.arange(y_f,y_i+2*dy,dy))
 plt.title('Mars')
 
 # Create object for Moon
 ax2=fig.add_subplot(gs[:,2],facecolor=(0.9,0.9,0.9))
 sphere_Moon,=ax2.plot([],[],'k',linewidth=3)
-land_Moon=ax2.plot([-radius*width_ratio,radius*width_ratio],[-5,-5],'gray',linewidth=42)
-plt.xlim(-radius*width_ratio,radius*width_ratio)
+land_Moon=ax2.plot([-radius_Moon*width_ratio,radius_Moon*width_ratio],[-5,-5],'gray',linewidth=42)
+plt.xlim(-radius_Moon*width_ratio,radius_Moon*width_ratio)
 plt.ylim(y_f,y_i+dy)
-plt.xticks(np.arange(-radius,radius+1,radius))
+plt.xticks(np.arange(-radius_Moon,radius_Moon+1,radius_Moon))
 plt.yticks(np.arange(y_f,y_i+2*dy,dy))
 plt.title('Moon')
 
