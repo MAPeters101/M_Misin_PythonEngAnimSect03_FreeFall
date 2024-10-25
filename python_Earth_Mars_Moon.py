@@ -50,8 +50,9 @@ def update_plot(num):
     if y_Earth[num]>radius:
         sphere_Earth.set_data(sphere_x_Earth,sphere_y_Earth+y_Earth[num])
         alt_E.set_data(t[0:num],y_Earth[0:num])
+        vel_E.set_data(t[0:num],y_Earth_velocity[0:num])
 
-    return sphere_Earth,alt_E
+    return sphere_Earth,alt_E,vel_E
 
 # Figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
@@ -77,6 +78,14 @@ alt_E,=ax3.plot([],[],'',linewidth=3,label='Alt_Earth = '+str(y_i)+' + ('+str(ro
 plt.xlim(0,t_end)
 plt.ylim(0,y_i)
 plt.legend(loc=(0.6,0.7),fontsize='x-small')
+
+# Create velocity function
+ax4=fig.add_subplot(gs[1,3],facecolor=(0.9,0.9,0.9))
+vel_E,=ax4.plot([],[],'',linewidth=3,label='Vel_Earth = '+str(g_Earth)+'t [m/s]')
+plt.xlim(0,t_end)
+plt.ylim(y_Earth_velocity[-1],0)
+plt.legend(loc='lower left',fontsize='x-small')
+
 
 plane_ani=animation.FuncAnimation(fig,update_plot,
     frames=frame_amount,interval=20,repeat=True,blit=True)
