@@ -120,12 +120,12 @@ plt.title('Moon')
 
 # Create position function
 ax3=fig.add_subplot(gs[0,3],facecolor=(0.9,0.9,0.9))
-alt_E,=ax3.plot([],[],'',linewidth=3,label='Alt_Earth = '+str(y_i)+' + ('+str(round(g_Earth/2,1))+')t^'+str(n)+' [m]')
-alt_Ma,=ax3.plot([],[],'orangered',linewidth=3,label='Alt_Mars = '+str(y_i)+' + ('+str(round(g_Mars/2,1))+')t^'+str(n)+' [m]')
-alt_Mo,=ax3.plot([],[],'gray',linewidth=3,label='Alt_Moon = '+str(y_i)+' + ('+str(round(g_Moon/2,1))+')t^'+str(n)+' [m]')
+alt_E,=ax3.plot([],[],'',linewidth=3,label='Alt_Earth= '+str(y_i)+'\n+('+str(round(g_Earth/2,1))+')t^'+str(n)+' [m]')
+alt_Ma,=ax3.plot([],[],'orangered',linewidth=3,label='Alt_Mars= '+str(y_i)+'\n+('+str(round(g_Mars/2,1))+')t^'+str(n)+' [m]')
+alt_Mo,=ax3.plot([],[],'gray',linewidth=3,label='Alt_Moon= '+str(y_i)+'\n+('+str(round(g_Moon/2,1))+')t^'+str(n)+' [m]')
 plt.xlim(0,t_end)
 plt.ylim(0,y_i)
-plt.legend(loc=(0.6,0.7),fontsize='x-small')
+plt.legend(loc=(0.6,0.56),fontsize='x-small')
 
 # Create velocity function
 ax4=fig.add_subplot(gs[1,3],facecolor=(0.9,0.9,0.9))
