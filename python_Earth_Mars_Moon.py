@@ -63,7 +63,20 @@ def update_plot(num):
         vel_E.set_data(t[0:num],y_Earth_velocity[0:num])
         acc_E.set_data(t[0:num],y_Earth_acceleration[0:num])
 
-    return sphere_Earth,alt_E,vel_E,acc_E
+    if y_Mars[num]>radius:
+        sphere_Mars.set_data(sphere_x_Mars,sphere_y_Mars+y_Mars[num])
+        alt_Ma.set_data(t[0:num],y_Mars[0:num])
+        vel_Ma.set_data(t[0:num],y_Mars_velocity[0:num])
+        acc_Ma.set_data(t[0:num],y_Mars_acceleration[0:num])
+
+    if y_Moon[num]>radius:
+        sphere_Moon.set_data(sphere_x_Moon,sphere_y_Moon+y_Moon[num])
+        alt_Mo.set_data(t[0:num],y_Moon[0:num])
+        vel_Mo.set_data(t[0:num],y_Moon_velocity[0:num])
+        acc_Mo.set_data(t[0:num],y_Moon_acceleration[0:num])
+
+    return sphere_Earth,alt_E,vel_E,acc_E,sphere_Mars,alt_Ma,vel_Ma,acc_Ma,\
+        sphere_Moon, alt_Mo, vel_Mo, acc_Mo
 
 # Figure properties
 fig=plt.figure(figsize=(16,9),dpi=80,facecolor=(0.8,0.8,0.8))
@@ -115,8 +128,8 @@ plt.legend(loc=(0.6,0.7),fontsize='x-small')
 # Create velocity function
 ax4=fig.add_subplot(gs[1,3],facecolor=(0.9,0.9,0.9))
 vel_E,=ax4.plot([],[],'',linewidth=3,label='Vel_Earth = '+str(g_Earth)+'t [m/s]')
-vel_Ma,=ax4.plot([],[],'orangered',linewidth=3,label='Vel_Mars = '+str(g_Earth)+'t [m/s]')
-vel_Mo,=ax4.plot([],[],'gray',linewidth=3,label='Vel_Moon = '+str(g_Earth)+'t [m/s]')
+vel_Ma,=ax4.plot([],[],'orangered',linewidth=3,label='Vel_Mars = '+str(g_Mars)+'t [m/s]')
+vel_Mo,=ax4.plot([],[],'gray',linewidth=3,label='Vel_Moon = '+str(g_Moon)+'t [m/s]')
 plt.xlim(0,t_end)
 plt.ylim(y_Earth_velocity[-1],0)
 plt.legend(loc='lower left',fontsize='x-small')
@@ -124,8 +137,8 @@ plt.legend(loc='lower left',fontsize='x-small')
 # Create acceleration function
 ax5=fig.add_subplot(gs[2,3],facecolor=(0.9,0.9,0.9))
 acc_E,=ax5.plot([],[],'',linewidth=3,label='Acc_Earth = '+str(g_Earth)+' [(m/s)/s == m/s^2]')
-acc_Ma,=ax5.plot([],[],'orangered',linewidth=3,label='Acc_Mars = '+str(g_Earth)+' [(m/s)/s == m/s^2]')
-acc_Mo,=ax5.plot([],[],'gray',linewidth=3,label='Acc_Moon = '+str(g_Earth)+' [(m/s)/s == m/s^2]')
+acc_Ma,=ax5.plot([],[],'orangered',linewidth=3,label='Acc_Mars = '+str(g_Mars)+' [(m/s)/s == m/s^2]')
+acc_Mo,=ax5.plot([],[],'gray',linewidth=3,label='Acc_Moon = '+str(g_Moon)+' [(m/s)/s == m/s^2]')
 plt.xlim(0,t_end)
 plt.ylim(g_Earth-1,0)
 plt.legend(loc=(0.02,0.25),fontsize='x-small')
