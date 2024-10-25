@@ -11,18 +11,26 @@ t=np.arange(t0,t_end+dt,dt)
 
 # Gravitational acceleration
 g_Earth=-9.8 # [m/s^2]
+g_Mars=-3.7 # [m/s^2]
+g_Moon=-1.6 # [m/s^2]
 
 # Position y arrays
 n=2
 y_i=100 # [m]
 y_Earth=y_i+0.5*g_Earth*t**n
+y_Mars=y_i+0.5*g_Mars*t**n
+y_Moon=y_i+0.5*g_Moon*t**n
 #np.set_printoptions(suppress=True)
 
 # Velocity y arrays
 y_Earth_velocity=n*0.5*g_Earth*t**(n-1)
+y_Mars_velocity=n*0.5*g_Mars*t**(n-1)
+y_Moon_velocity=n*0.5*g_Moon*t**(n-1)
 
 # Acceleration y arrays
 y_Earth_acceleration=(n-1)*g_Earth*t**(n-2)
+y_Mars_acceleration=(n-1)*g_Mars*t**(n-2)
+y_Moon_acceleration=(n-1)*g_Moon*t**(n-2)
 
 # Create circles
 def create_circle(r):
@@ -34,6 +42,8 @@ def create_circle(r):
 
 radius=5
 sphere_x_Earth,sphere_y_Earth=create_circle(radius)
+sphere_x_Mars,sphere_y_Mars=create_circle(radius)
+sphere_x_Moon,sphere_y_Moon=create_circle(radius)
 
 # np.set_printoptions(suppress=True)
 # print(sphere_x_Earth)
